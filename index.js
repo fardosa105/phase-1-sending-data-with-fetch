@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script src="path/to/your/script.js"></script>
-</body>
-</html>
+// Add your code here
+function submitData(name, email){
+    return fetch("http://localhost:3000/users", {
+     method : "POST",
+     headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+     },
+     body: JSON.stringify({
+        name,
+        email
+     })
+    })
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(object){
+        document.body.innerHTML = object ["id"]
+    })
+    .catch(function(error){
+        document.body.innerHTML = error.message
+    })
+    }
